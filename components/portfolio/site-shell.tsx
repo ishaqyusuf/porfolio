@@ -4,7 +4,6 @@ import { profile } from "@/lib/portfolio/content"
 
 type SiteShellProps = {
   children: ReactNode
-  template: string
 }
 
 const navItems = [
@@ -13,7 +12,7 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ]
 
-export function SiteShell({ children, template }: SiteShellProps) {
+export function SiteShell({ children }: SiteShellProps) {
   return (
     <div className="min-h-svh bg-background text-foreground">
       <div className="mx-auto flex min-h-svh w-full max-w-3xl flex-col px-5 py-6 sm:px-8 sm:py-8">
@@ -44,7 +43,7 @@ export function SiteShell({ children, template }: SiteShellProps) {
 
         <footer className="flex flex-col gap-2 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>2026 © {profile.name}</p>
-          <p>Template: {template}</p>
+          <p>{profile.email}</p>
         </footer>
       </div>
     </div>

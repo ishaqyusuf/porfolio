@@ -2,7 +2,6 @@ import { LinkList } from "@/components/portfolio/link-list"
 import { SiteShell } from "@/components/portfolio/site-shell"
 import { WorkList } from "@/components/portfolio/work-list"
 import { Badge } from "@/components/ui/badge"
-import { siteEnv } from "@/lib/env"
 import {
   profile,
   profileLinks,
@@ -12,7 +11,7 @@ import {
 
 export default function Page() {
   return (
-    <SiteShell template={siteEnv.template}>
+    <SiteShell>
       <section id="about" className="py-20 sm:py-28">
         <p className="text-sm font-medium text-muted-foreground">
           {profile.role}

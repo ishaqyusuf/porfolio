@@ -22,7 +22,7 @@ export const profileLinks = [
   },
   {
     label: "CV",
-    href: "mailto:ishaqyusuf024@gmail.com?subject=CV%20request",
+    href: "https://docs.google.com/document/d/1WmEa7aK32kZ9lkplXC-niW1FWu7o0s34woYlZPO-KpM/edit?usp=sharing",
   },
   {
     label: "Email",
@@ -34,7 +34,7 @@ export const selectedWork = [
   {
     name: "GND Millwork",
     type: "Client operations platform",
-    href: "https://gndmillwork.com",
+    href: "https://gndprodesk.com",
     description:
       "Lead developer for a bespoke business operations platform spanning sales, dealer onboarding, payments, print/PDF snapshots, dispatch, inventory, notifications, jobs, reporting, and mobile workflows.",
   },
