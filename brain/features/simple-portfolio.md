@@ -14,6 +14,7 @@ Publish a simple About-first portfolio for Ishaq Yusuf using the `oruc-inspired`
 - Selected work list.
 - Contact section.
 - Stack highlights.
+- Header theme toggle.
 - Footer with copyright and email.
 
 ## Data
