@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react"
 import type { FocusEvent } from "react"
 
 import { ExternalAnchor, Icon } from "@/components/showcase/icon"
+import { ThemeSwitch } from "@/components/showcase/theme-switch"
 import type { ExternalLink, NavItem } from "@/lib/portfolio/types"
 
 type SiteHeaderProps = {
@@ -181,6 +182,7 @@ export function SiteHeader({
               <span className="avail__dot" aria-hidden="true" />
               {availability}
             </span>
+            <ThemeSwitch />
             <a className="btn btn--signal btn--sm pill__hire" href={hire.href}>
               {hire.label}
             </a>

@@ -94,7 +94,41 @@ body:has(.showcase) {
   }
 }
 
+/* Homepage theme. Light (warm paper) is the base; `.dark` on <html>
+   (next-themes: follows the system until the visitor toggles, then
+   persists) restores the original ink canvas. `--signal` is amber for
+   text, strokes and focus, so it deepens on paper for contrast;
+   `--signal-fill` is amber as a surface and stays bright in both. */
 .showcase {
+  color-scheme: light;
+  --canvas: #f5f2ea;
+  --field: #fbf9f4;
+  --field-2: #eeeae0;
+  --line: #e1dbce;
+  --line-2: #d0c8b8;
+  --text: #17140f;
+  --text-2: #4d483f;
+  --text-3: #6b655a;
+  --signal: #8f5a00;
+  --signal-fill: #f2b33d;
+  --signal-fill-hover: #f7c766;
+  --signal-ink: #1a1408;
+  --signal-done: #b88a3a;
+  --signal-soft: rgba(201, 138, 20, 0.14);
+  --signal-line: rgba(143, 90, 0, 0.4);
+  --ink-2: rgba(26, 20, 8, 0.74);
+  --ink-line: rgba(26, 20, 8, 0.22);
+  --ink-hover: #2c2312;
+  --sheet: #f3efe6;
+  --bezel: #17140f;
+  --shadow-pill:
+    0 18px 40px -24px rgba(48, 36, 14, 0.35),
+    0 2px 8px -2px rgba(48, 36, 14, 0.1);
+  --shadow-float: 0 24px 48px -16px rgba(48, 36, 14, 0.28);
+  --shadow-device: 0 30px 50px -24px rgba(48, 36, 14, 0.45);
+}
+.dark .showcase {
+  color-scheme: dark;
   --canvas: #0e1116;
   --field: #161b22;
   --field-2: #1d232c;
@@ -104,15 +138,16 @@ body:has(.showcase) {
   --text-2: #aab0b9;
   --text-3: #8a919c;
   --signal: #f2b33d;
-  --signal-hover: #f7c766;
-  --signal-ink: #1a1408;
   --signal-done: #8c6a2a;
   --signal-soft: rgba(242, 179, 61, 0.14);
   --signal-line: rgba(242, 179, 61, 0.45);
-  --ink-2: rgba(26, 20, 8, 0.74);
-  --ink-line: rgba(26, 20, 8, 0.22);
-  --sheet: #f3efe6;
   --bezel: #090b0f;
+  --shadow-pill:
+    0 18px 40px -22px rgba(0, 0, 0, 0.85), 0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  --shadow-float: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  --shadow-device: 0 30px 50px -24px rgba(0, 0, 0, 0.85);
+}
+.showcase {
   --display:
     var(--showcase-font-display), var(--showcase-font-sans), ui-sans-serif,
     system-ui, sans-serif;
@@ -148,7 +183,7 @@ body:has(.showcase) {
   caret-color: var(--signal);
 }
 .showcase ::selection {
-  background: var(--signal);
+  background: var(--signal-fill);
   color: var(--signal-ink);
 }
 .showcase :focus-visible {
@@ -207,7 +242,7 @@ body:has(.showcase) {
   left: 16px;
   top: -80px;
   z-index: 60;
-  background: var(--signal);
+  background: var(--signal-fill);
   color: var(--signal-ink);
   padding: 10px 16px;
   border-radius: 999px;
@@ -255,13 +290,13 @@ body:has(.showcase) {
   transform: translateX(3px);
 }
 .showcase .btn--signal {
-  background: var(--signal);
-  border-color: var(--signal);
+  background: var(--signal-fill);
+  border-color: var(--signal-fill);
   color: var(--signal-ink);
 }
 .showcase .btn--signal:hover {
-  background: var(--signal-hover);
-  border-color: var(--signal-hover);
+  background: var(--signal-fill-hover);
+  border-color: var(--signal-fill-hover);
   color: var(--signal-ink);
 }
 .showcase .btn--sm {
@@ -326,9 +361,7 @@ body:has(.showcase) {
   border-radius: inherit;
   background: var(--field);
   border: 1px solid var(--line);
-  box-shadow:
-    0 18px 40px -22px rgba(0, 0, 0, 0.85),
-    0 2px 8px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-pill);
   opacity: 0;
   transform: scale(0.97, 0.82);
   pointer-events: none;
@@ -391,7 +424,7 @@ body:has(.showcase) {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--signal);
+  background: var(--signal-fill);
   color: var(--signal-ink);
   font-family: var(--display);
   font-weight: 600;
@@ -441,13 +474,57 @@ body:has(.showcase) {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--signal);
+  background: var(--signal-fill);
 }
 .showcase .pill__end {
   display: flex;
   align-items: center;
   gap: 12px;
   flex: none;
+}
+.showcase .theme-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  transition:
+    color 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+}
+.showcase .theme-btn:hover {
+  color: var(--text);
+  border-color: var(--text-3);
+  background: var(--field-2);
+}
+.showcase .theme-btn svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  transition:
+    opacity 0.3s var(--ease),
+    transform 0.45s var(--ease);
+}
+.showcase .theme-btn__sun,
+.dark .showcase .theme-btn__moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.6);
+}
+.dark .showcase .theme-btn__sun {
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 960px) {
+  .showcase .theme-btn {
+    width: 44px;
+    height: 44px;
+  }
 }
 .showcase .avail {
   display: inline-flex;
@@ -463,7 +540,7 @@ body:has(.showcase) {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--signal);
+  background: var(--signal-fill);
 }
 .showcase .avail__dot::after {
   content: "";
@@ -505,7 +582,7 @@ body:has(.showcase) {
   border: 1px solid var(--line-2);
   border-radius: 20px;
   padding: 8px 20px 20px;
-  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  box-shadow: var(--shadow-float);
 }
 .showcase .sheet-nav[hidden] {
   display: none;
@@ -764,7 +841,7 @@ body:has(.showcase) {
   width: 9%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: var(--signal);
+  background: var(--signal-fill);
   border: 3px solid var(--field);
 }
 .showcase .orbit li {
@@ -789,7 +866,7 @@ body:has(.showcase) {
   border: 1px solid var(--text-3);
 }
 .showcase .orbit li.is-lead::before {
-  background: var(--signal);
+  background: var(--signal-fill);
   border-color: var(--signal);
 }
 .showcase .orbit .o1 {
@@ -978,7 +1055,7 @@ body:has(.showcase) {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--signal);
+  background: var(--signal-fill);
 }
 .showcase .chip svg {
   width: 13px;
@@ -1132,7 +1209,7 @@ body:has(.showcase) {
   display: block;
   height: 100%;
   width: 33.333%;
-  background: var(--signal);
+  background: var(--signal-fill);
   transition: width 0.42s var(--ease);
 }
 
@@ -1215,7 +1292,7 @@ body:has(.showcase) {
   width: 7px;
   height: 7px;
   border-radius: 2px;
-  background: var(--signal);
+  background: var(--signal-fill);
   flex: none;
 }
 .showcase .panel__next {
@@ -1703,7 +1780,7 @@ body:has(.showcase) {
   display: block;
   height: 100%;
   width: 41.15%;
-  background: var(--signal);
+  background: var(--signal-fill);
   border-radius: inherit;
 }
 .showcase .paid__legend {
@@ -1759,7 +1836,7 @@ body:has(.showcase) {
   color: var(--text-2);
 }
 .showcase .stops li.now .stop-n {
-  background: var(--signal);
+  background: var(--signal-fill);
   border-color: var(--signal);
   color: var(--signal-ink);
   font-weight: 600;
@@ -1825,7 +1902,7 @@ body:has(.showcase) {
 }
 .showcase .log li.now::before {
   border-color: var(--signal);
-  background: var(--signal);
+  background: var(--signal-fill);
 }
 .showcase .log__day {
   font-family: var(--mono);
@@ -1929,7 +2006,7 @@ body:has(.showcase) {
   padding: 8px;
   background: var(--bezel);
   border: 1px solid var(--line-2);
-  box-shadow: 0 30px 50px -24px rgba(0, 0, 0, 0.85);
+  box-shadow: var(--shadow-device);
 }
 .showcase .handset__screen {
   border-radius: 27px;
@@ -2001,7 +2078,7 @@ body:has(.showcase) {
   font-weight: 600;
 }
 .showcase .handset__route li.now i {
-  background: var(--signal);
+  background: var(--signal-fill);
   border-color: var(--signal);
 }
 .showcase .handset__route li em {
@@ -2096,7 +2173,7 @@ body:has(.showcase) {
   color: var(--text);
 }
 .showcase .scope__grid li.is-current::before {
-  background: var(--signal);
+  background: var(--signal-fill);
   border-color: var(--signal);
 }
 .showcase .scope__foot {
@@ -2290,7 +2367,7 @@ body:has(.showcase) {
   content: "";
   width: 14px;
   height: 1px;
-  background: var(--signal);
+  background: var(--signal-fill);
   flex: none;
 }
 .showcase .set {
@@ -2379,7 +2456,7 @@ body:has(.showcase) {
 }
 .showcase .role:first-child .role__node {
   border-color: var(--signal);
-  background: var(--signal);
+  background: var(--signal-fill);
 }
 .showcase .role h3 {
   font-family: var(--display);
@@ -2566,7 +2643,7 @@ body:has(.showcase) {
 
 /* Contact */
 .showcase .contact {
-  background: var(--signal);
+  background: var(--signal-fill);
   color: var(--signal-ink);
   padding-block: clamp(80px, 10vw, 136px) 28px;
 }
@@ -2621,7 +2698,7 @@ body:has(.showcase) {
   min-width: 0;
 }
 .showcase .form-card ::selection {
-  background: var(--signal);
+  background: var(--signal-fill);
   color: var(--signal-ink);
 }
 .showcase .form-card :focus-visible {
@@ -2831,21 +2908,21 @@ body:has(.showcase) {
 .showcase .contact .btn--ink {
   background: var(--signal-ink);
   border-color: var(--signal-ink);
-  color: var(--signal);
+  color: var(--signal-fill);
 }
 .showcase .contact .btn--ink:hover {
-  background: #2c2312;
-  border-color: #2c2312;
-  color: var(--signal-hover);
+  background: var(--ink-hover);
+  border-color: var(--ink-hover);
+  color: var(--signal-fill-hover);
 }
 .showcase .contact .form-card .btn--signal {
-  background: var(--signal);
-  border-color: var(--signal);
+  background: var(--signal-fill);
+  border-color: var(--signal-fill);
   color: var(--signal-ink);
 }
 .showcase .contact .form-card .btn--signal:hover {
-  background: var(--signal-hover);
-  border-color: var(--signal-hover);
+  background: var(--signal-fill-hover);
+  border-color: var(--signal-fill-hover);
 }
 .showcase .contact .form-card .btn--ghost {
   border-color: var(--line-2);

@@ -4,7 +4,7 @@ Approved Workshop revision `9e7e040f-2dca-4b9a-b342-89a1292aa300` ("02 · Ink ex
 
 ## World
 
-A dark product exhibition with adamspro.dev-level structure: floating pill nav, numbered section kickers, projects shown inside browser frames and a phone, an amber contact band. Deep ink canvas, warm off-white type, one amber signal colour. The homepage is always dark, independent of the blog's light/dark theme.
+A dark product exhibition with adamspro.dev-level structure: floating pill nav, numbered section kickers, projects shown inside browser frames and a phone, an amber contact band. Deep ink canvas, warm off-white type, one amber signal colour. The homepage has light (warm paper) and dark (ink) themes shared with the blog through next-themes: it follows the system theme until the visitor uses the header toggle (sun/moon, beside Hire me; also the `d` key), then the choice persists in localStorage. In light, `--signal` deepens to `#8F5A00` for text/strokes/focus (≈5:1 on the canvas) while `--signal-fill` keeps amber surfaces at `#F2B33D`.
 
 ## Tokens (scoped to `.showcase` in `app/globals.css`)
 

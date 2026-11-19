@@ -25,7 +25,7 @@ Present Ishaq Yusuf through real work using the approved "Ink exhibit" design (W
 - Client components (kept small): `site-header.tsx` (scroll state, menu sheet, scroll spy), `gnd-workflow.tsx` (tabs, keyboard, Next buttons, scope disclosure; the illustrative visuals render on the server and arrive as props), `copy-email.tsx` (primary email channel), `contact-form.tsx` (preview-only form).
 - Shared server pieces: `browser-frame.tsx` (frame, illustrative app shell, notices), `gnd-stages.tsx`, `project-heading.tsx` (meta row, tags), `section-intro.tsx` (numbered kickers), `icon.tsx`.
 - Fonts: local Cal Sans and Inter via `next/font/local` in `components/showcase/fonts.ts`, exposed as CSS variables.
-- Styling: tokens and selectors scoped to `.showcase` in `app/globals.css`, ported from the prototype. The homepage is always dark regardless of the saved blog theme.
+- Styling: tokens and selectors scoped to `.showcase` in `app/globals.css`, ported from the prototype. Light tokens are the base; `.dark .showcase` restores the ink palette. Theme follows the system by default and the header `ThemeSwitch` (`components/showcase/theme-switch.tsx`) persists the visitor's choice via next-themes. `--signal` is amber for text/strokes (deepened in light); `--signal-fill` is amber as a surface.
 - Product truth and design: `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json`.
 
 ## Data
