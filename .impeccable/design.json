@@ -1,0 +1,62 @@
+{
+  "name": "Product showcase",
+  "source": {
+    "workshopRevision": "a56499bd-43aa-4ebd-8d45-36bbe89668ef",
+    "direction": "02"
+  },
+  "scope": ".showcase",
+  "theme": "dark",
+  "independentOfSiteTheme": true,
+  "colors": {
+    "canvas": "#0E1116",
+    "field": "#161B22",
+    "field2": "#1D232C",
+    "line": "#2B323D",
+    "line2": "#3A424F",
+    "text": "#EEEAE2",
+    "text2": "#AAB0B9",
+    "text3": "#8A919C",
+    "signal": "#F2B33D",
+    "signalHover": "#F7C766",
+    "signalInk": "#1A1408",
+    "signalDone": "#8C6A2A",
+    "sheet": "#F3EFE6"
+  },
+  "typography": {
+    "display": {
+      "family": "Cal Sans",
+      "file": "public/fonts/cal-sans.woff2",
+      "weight": 600,
+      "tracking": "-0.02em"
+    },
+    "body": {
+      "family": "Inter",
+      "file": "public/fonts/inter.woff2",
+      "weight": "100 900",
+      "size": "1.0625rem",
+      "lineHeight": 1.6,
+      "features": ["cv11", "ss01"]
+    }
+  },
+  "layout": {
+    "wrap": "1312px",
+    "gutter": "clamp(20px, 4.5vw, 64px)",
+    "breakpoints": [1100, 860, 640, 520, 400],
+    "reviewViewports": ["1440x960", "390x844", "320"]
+  },
+  "radius": { "control": "8px", "step": "12px", "field": "16px" },
+  "motion": {
+    "ease": "cubic-bezier(.16, 1, .3, 1)",
+    "panelEnter": "420ms",
+    "reducedMotion": "transitions and animation disabled"
+  },
+  "sections": [
+    "header",
+    "hero",
+    "gnd-workflow",
+    "afterservice",
+    "open-source-labs",
+    "about",
+    "contact"
+  ]
+}
