@@ -11,3 +11,6 @@ Tracks the technical stack.
 - shadcn-compatible component structure
 - next-themes
 - Bun scripts
+- Drizzle ORM
+- libSQL-compatible SQLite
+- react-markdown
