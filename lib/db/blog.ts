@@ -34,7 +34,37 @@ type PublishedPostRow = {
   seoDescription?: string | null
 }
 
-export async function getPublishedPosts(): Promise<BlogPostListItem[]> {
+/**
+ * The blog must never take the site down: when the database is missing or
+ * unreachable (e.g. production env vars not configured), log the failure and
+ * fall back so the index shows its empty state and articles return 404.
+ */
+async function withDatabaseFallback<T>(
+  label: string,
+  query: () => Promise<T>,
+  fallback: T
+): Promise<T> {
+  try {
+    return await query()
+  } catch (error) {
+    console.error(`[blog] ${label} failed; serving fallback`, error)
+    return fallback
+  }
+}
+
+export function getPublishedPosts(): Promise<BlogPostListItem[]> {
+  return withDatabaseFallback("getPublishedPosts", queryPublishedPosts, [])
+}
+
+export function getPublishedPostBySlug(slug: string): Promise<BlogPost | null> {
+  return withDatabaseFallback(
+    "getPublishedPostBySlug",
+    () => queryPublishedPostBySlug(slug),
+    null
+  )
+}
+
+async function queryPublishedPosts(): Promise<BlogPostListItem[]> {
   const db = getDb()
   const rows = await db
     .select({
@@ -51,8 +81,8 @@ export async function getPublishedPosts(): Promise<BlogPostListItem[]> {
   return attachTags(rows.filter(hasPublishedDate))
 }
 
-export async function getPublishedPostBySlug(
-  slug: string,
+async function queryPublishedPostBySlug(
+  slug: string
 ): Promise<BlogPost | null> {
   const db = getDb()
   const [post] = await db
@@ -85,7 +115,7 @@ export async function getPublishedPostBySlug(
 }
 
 async function attachTags<TPost extends PublishedPostRow>(
-  postRows: TPost[],
+  postRows: TPost[]
 ): Promise<Array<TPost & { publishedAt: Date; tags: BlogTag[] }>> {
   if (postRows.length === 0) {
     return []
@@ -122,7 +152,7 @@ async function getTagsByPostId(postIds: string[]) {
 }
 
 function hasPublishedDate(
-  post: PublishedPostRow,
+  post: PublishedPostRow
 ): post is PublishedPostRow & { publishedAt: Date } {
   return post.publishedAt instanceof Date
 }
